@@ -1,6 +1,9 @@
 package com.example.cloudstorageservice.model.db;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,12 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 
 @Entity
-@Getter
-@Setter
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 @IdClass(FileInfoKey.class)
 public class FileInfoEntity {
 

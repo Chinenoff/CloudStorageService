@@ -26,5 +26,4 @@ public class FileInfoKey implements Serializable {
     @NotBlank
     private String username;
 
-
 }

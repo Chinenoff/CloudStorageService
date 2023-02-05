@@ -1,0 +1,38 @@
+#General---
+server:
+  port: 8080
+  ssl:
+    enabled: off #true #off
+    key-alias: baeldung
+    key-store: "classpath:keystore/baeldung.p12"
+    key-store-type: PKCS12
+    key-store-password: bankomat13
+
+##trust store location
+#  trust.store=classpath:keystore/baeldung.p12
+#  #trust store password
+#  trust.store.password=password
+
+#Data---
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: root
+    password: root
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none #update create
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+  servlet:
+    multipart:
+      max-file-size: 512MB
+      max-request-size: 512MB
+
+  #Liquibase---
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+
+
