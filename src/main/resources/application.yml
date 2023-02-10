@@ -8,11 +8,6 @@ server:
     key-store-type: PKCS12
     key-store-password: bankomat13
 
-##trust store location
-#  trust.store=classpath:keystore/baeldung.p12
-#  #trust store password
-#  trust.store.password=password
-
 #Data---
 spring:
   datasource:

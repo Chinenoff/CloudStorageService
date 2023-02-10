@@ -29,7 +29,7 @@ public class TokenAuthenticationFilter extends GenericFilterBean {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         final String token = httpRequest.getHeader(JWT_REQUEST_HEADER);
         if (token != null) {
-            log.info("Проверка наличия токена в базе и его валидности");
+            log.info("Checking the presence of a token in the database and its validity");
             UserJwtEntity userJwt = jwtAuthService.getUserByToken(token.substring(7));
             if (jwtAuthService.validateToken(userJwt.getJwtToken(), userJwt.getUsername())) {
                 UserDetails currentUser = userDetailsService.loadUserByUsername(userJwt.getUsername());

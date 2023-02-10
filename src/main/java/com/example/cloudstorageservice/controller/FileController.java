@@ -17,12 +17,12 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
-@CrossOrigin(
+/*@CrossOrigin(
         origins = {"http://localhost:8080"},
         allowCredentials = "true",
         allowedHeaders = "*",
         methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS}
-)
+)*/
 @Validated
 public class FileController {
     private final DataService dataService;

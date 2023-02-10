@@ -23,13 +23,13 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public List<FileInfo> getFileNames() {
-        log.info("Запрошен список файлов пользователя {}", customUserDetailsService.getUsernameByContext());
+        log.info("List of user's files requested {}", customUserDetailsService.getUsernameByContext());
         return filesRepository.findByName(customUserDetailsService.getUsernameByContext());
     }
 
     @Override
     public HttpStatus uploadFile(String fileName, MultipartFile file) throws IOException {
-        log.info("Попытка загрузки файла {} пользователем {}", fileName, customUserDetailsService.getUsernameByContext());
+        log.info("Attempt to upload file {} by user {}", fileName, customUserDetailsService.getUsernameByContext());
         FileInfoEntity userFile = FileInfoEntity.builder()
                 .fileName(fileName)
                 .username(customUserDetailsService.getUsernameByContext())
@@ -37,29 +37,29 @@ public class DataServiceImpl implements DataService {
                 .size(file.getSize())
                 .build();
         filesRepository.saveAndFlush(userFile);
-        log.info("Данные загружены");
+        log.info("Data loaded");
         return HttpStatus.OK;
     }
 
     @Override
     public HttpStatus editFileName(String currentFileName, String newFileName) {
-        log.info("Попытка изменения имени файла {} пользователем {}", currentFileName, customUserDetailsService.getUsernameByContext());
+        log.info("Attempt to change filename {} by user {}", currentFileName, customUserDetailsService.getUsernameByContext());
         filesRepository.editFileName(customUserDetailsService.getUsernameByContext(), currentFileName, newFileName);
-        log.info("Имя файла успешно изменено на {}", newFileName);
+        log.info("Filename successfully changed to {}", newFileName);
         return HttpStatus.OK;
     }
 
     @Override
     public byte[] getFileByName(String fileName) {
-        log.info("Запрос файла {} пользователем {}", fileName, customUserDetailsService.getUsernameByContext());
+        log.info("File request {} by user {}", fileName, customUserDetailsService.getUsernameByContext());
         return filesRepository.getById(new FileInfoKey(fileName, customUserDetailsService.getUsernameByContext())).getFile();
     }
 
     @Override
     public HttpStatus deleteFile(String fileName) {
-        log.info("Попытка удаления файла {} пользователем {}", fileName, customUserDetailsService.getUsernameByContext());
+        log.info("Attempt to delete file {} by user {}", fileName, customUserDetailsService.getUsernameByContext());
         filesRepository.deleteById(new FileInfoKey(fileName, customUserDetailsService.getUsernameByContext()));
-        log.info("Файл успешно удален");
+        log.info("File deleted successfully");
         return HttpStatus.OK;
     }
 }

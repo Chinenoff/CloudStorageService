@@ -31,7 +31,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     private boolean validateUser(String username, String password) {
-        log.info("Поиск пользователя в базе по указанному логину {}", username);
+        log.info("Search for a user in the database by the specified login {}", username);
         UserDetails currentUser = userDetailsService.loadUserByUsername(username);
         return username.equals(currentUser.getUsername()) && password.equals(currentUser.getPassword());
     }
