@@ -1,16 +1,24 @@
 package com.example.cloudstorageservice.model.request;
 
 import com.example.cloudstorageservice.model.db.UserEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 
-import lombok.Data;
-
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class AuthRequest {
-    private String name;
+    @NotBlank
+    private String login;
+    @NotBlank
     private String password;
+
+    public AuthRequest(UserEntity entity) {
+        this.login = entity.getUsername();
+        this.password = entity.getPassword();
+    }
+
+
 }

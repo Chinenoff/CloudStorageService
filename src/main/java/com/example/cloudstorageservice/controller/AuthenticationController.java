@@ -14,18 +14,14 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 @Validated
 @RestController
-@CrossOrigin(
-        origins = "http://localhost:8080",
-        allowCredentials = "true",
-        allowedHeaders = "*",
-        methods = {RequestMethod.POST, RequestMethod.OPTIONS})
+
 public class AuthenticationController {
 
     private AuthenticationService authenticationService;
 
     @PostMapping("/login")
     public AuthResponse login(@RequestBody AuthRequest authRequest) {
-        final String token = authenticationService.getAuthTokenByUsernameAndPassword(authRequest.getName(), authRequest.getPassword());
+        final String token = authenticationService.getAuthTokenByUsernameAndPassword(authRequest.getLogin(), authRequest.getPassword());
         return new AuthResponse(token);
     }
 
